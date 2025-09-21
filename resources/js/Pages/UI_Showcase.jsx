@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import Card from '@/Components/Card';
@@ -7,8 +7,13 @@ import Button from '@/Components/Button';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
+import Checkbox from '@/Components/Checkbox';
+import Radio from '@/Components/Radio';
 
 export default function UIShowcase() {
+    const [checked, setChecked] = useState(false);
+    const [radioValue, setRadioValue] = useState('option1');
+
     return (
         <AuthenticatedLayout
             header={
@@ -113,6 +118,69 @@ export default function UIShowcase() {
                                         rows="4"
                                         placeholder="Enter your message"
                                     ></textarea>
+                                </div>
+                                
+                                {/* Checkbox and Radio Example */}
+                                <div className="mt-6">
+                                    <div className="mb-4">
+                                        <label className="label">Checkbox Example</label>
+                                        <div className="flex items-center">
+                                            <Checkbox
+                                                id="checkbox-example"
+                                                checked={checked}
+                                                onChange={(e) => setChecked(e.target.checked)}
+                                                className="form-checkbox"
+                                            />
+                                            <label htmlFor="checkbox-example" className="ml-2 text-sm text-gray-700">
+                                                I agree to the terms and conditions
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label className="label">Radio Button Example</label>
+                                        <div className="space-y-2">
+                                            <div className="flex items-center">
+                                                <Radio
+                                                    id="radio-option1"
+                                                    name="radio-example"
+                                                    value="option1"
+                                                    checked={radioValue === 'option1'}
+                                                    onChange={(e) => setRadioValue(e.target.value)}
+                                                    className="form-radio"
+                                                />
+                                                <label htmlFor="radio-option1" className="ml-2 text-sm text-gray-700">
+                                                    Option 1
+                                                </label>
+                                            </div>
+                                            <div className="flex items-center">
+                                                <Radio
+                                                    id="radio-option2"
+                                                    name="radio-example"
+                                                    value="option2"
+                                                    checked={radioValue === 'option2'}
+                                                    onChange={(e) => setRadioValue(e.target.value)}
+                                                    className="form-radio"
+                                                />
+                                                <label htmlFor="radio-option2" className="ml-2 text-sm text-gray-700">
+                                                    Option 2
+                                                </label>
+                                            </div>
+                                            <div className="flex items-center">
+                                                <Radio
+                                                    id="radio-option3"
+                                                    name="radio-example"
+                                                    value="option3"
+                                                    checked={radioValue === 'option3'}
+                                                    onChange={(e) => setRadioValue(e.target.value)}
+                                                    className="form-radio"
+                                                />
+                                                <label htmlFor="radio-option3" className="ml-2 text-sm text-gray-700">
+                                                    Option 3
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div className="flex items-center justify-end mt-6">
