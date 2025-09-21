@@ -8,6 +8,8 @@ import { addProductForm } from "@/schema/ProductForm";
 import CustomeSelect from "@/Components/Select";
 import ProrductSelectOptions from "../Products/ProductSelectOptions";
 import { ProductList1 } from "./ProductList1";
+import FormComponent from "@/Components/Form";
+import Card from "@/Components/Card";
 
 const ProductForm = () => {
     const [productList, setProductList] = useState([]);
@@ -79,7 +81,7 @@ const ProductForm = () => {
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                <h2 className="section-title">
                     Purchase Products
                 </h2>
             }
@@ -87,243 +89,231 @@ const ProductForm = () => {
             <Head title="PurchaseProducts" />
             <div className="py-4">
                 <div className="mx-auto max-w-7xl">
-                    <div className=" bg-white/80 shadow-sm">
-                        <Formik
-                            initialValues={{
-                                product: "",
-                                quantity: "",
-                                unitPrice: "",
-                                sellPrice: "",
-                                billNumber: "",
-                                discount: "",
-                                companyName: "",
-                                batch: "",
-                                expireDate: "",
-                            }}
-                            validationSchema={addProductForm}
-                            onSubmit={submit}
-                        >
-                            {({
-                                handleSubmit,
-                                submitForm,
-                                values,
-                                setFieldValue,
-                            }) => (
-                                <Form
-                                    className="pt-6 pb-10 pl-4"
-                                    onSubmit={handleSubmit}
-                                >
-                                    <div className="flex justify-between ">
-                                        <div className="flex items-center gap-4">
-                                            <Link
-                                                className="hover:text-blue-600 text-2xl -translate-y-1 font-bold text-red-700 "
-                                                href={route("supplier.create")}
-                                            >
-                                                +
-                                            </Link>
-
-                                            <InputLabel
-                                                value="From :"
-                                                className="text-blue-800 font-bold"
-                                            />
-                                            <div>
-                                                <CustomeSelect
-                                                    name="companyName"
-                                                    products={suppliers}
-                                                    values={values}
-                                                    setFieldValue={
-                                                        setFieldValue
-                                                    }
-                                                    placeholder="Choose Company"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="flex gap-4">
-                                            <InputLabel
-                                                value="Date:"
-                                                className="font-bold"
-                                            />
-                                            <CustomeInput
-                                                id="quantity"
-                                                value={date}
-                                                placeholder="Quantity"
-                                                name="date"
-                                                width="border h-6"
-                                                onKeyDown={(e) =>
-                                                    handleKeyDown(e, submitForm)
-                                                }
-                                                type="date"
-                                                required
-                                            />
-                                        </div>
-                                        <div></div>
-                                    </div>
-                                    <div className="flex gap-4 items-center mt-4">
-                                        <InputLabel
-                                            htmlFor="billNumber"
-                                            value="Bill Number:"
-                                            className="font-bold text-xs mb-1"
-                                        />
-                                        <CustomeInput
-                                            onKeyDown={(e) =>
-                                                handleKeyDown(e, submitForm)
-                                            }
-                                            width="border w-32 h-6"
-                                            placeholder="Bill Number"
-                                            id="billNumber"
-                                            name="billNumber"
-                                        />
-                                    </div>
-                                    <div className="mt-4 flex justify-between sm:flex-col lg:flex-row md:flex-row flex-col">
-                                        <div className="flex">
-                                            <div>
-                                                <InputLabel
-                                                    value="Product Name"
-                                                    className="font-bold text-xs  mb-1"
-                                                />
-                                                <ProrductSelectOptions
-                                                    name="product"
-                                                    placeholder="Search Product..."
-                                                    options1={products}
-                                                    values={values}
-                                                    setFieldValue={
-                                                        setFieldValue
-                                                    }
-                                                />
-                                            </div>
-                                            <div>
-                                                <InputLabel
-                                                    value="quantity"
-                                                    className="font-bold text-xs  mb-1"
-                                                />
-                                                <CustomeInput
-                                                    id="quantity"
-                                                    placeholder="Qant"
-                                                    name="quantity"
-                                                    width="border w-24 h-6"
-                                                    onKeyDown={(e) =>
-                                                        handleKeyDown(
-                                                            e,
-                                                            submitForm
-                                                        )
-                                                    }
-                                                    type="number"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <InputLabel
-                                                    value="Batch No"
-                                                    className="font-bold text-xs  mb-1"
-                                                />
-                                                <CustomeInput
-                                                    id="batch"
-                                                    name="batch"
-                                                    placeholder="batch"
-                                                    width="border w-24 h-6"
-                                                    onKeyDown={(e) =>
-                                                        handleKeyDown(
-                                                            e,
-                                                            submitForm
-                                                        )
-                                                    }
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="flex">
-                                                <div>
-                                                    <InputLabel
-                                                        value="Discount"
-                                                        className="font-bold text-xs mb-1"
-                                                    />
+                    <Card>
+                        <Card.Body>
+                            <Formik
+                                initialValues={{
+                                    product: "",
+                                    quantity: "",
+                                    unitPrice: "",
+                                    sellPrice: "",
+                                    billNumber: "",
+                                    discount: "",
+                                    companyName: "",
+                                    batch: "",
+                                    expireDate: "",
+                                }}
+                                validationSchema={addProductForm}
+                                onSubmit={submit}
+                            >
+                                {({
+                                    handleSubmit,
+                                    submitForm,
+                                    values,
+                                    setFieldValue,
+                                }) => (
+                                    <Form
+                                        className="w-full"
+                                        onSubmit={handleSubmit}
+                                    >
+                                        <FormComponent.Row>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <div className="flex items-center gap-2">
+                                                        <Link
+                                                            className="btn btn-primary btn-sm"
+                                                            href={route("supplier.create")}
+                                                        >
+                                                            +
+                                                        </Link>
+                                                        <FormComponent.Label required>
+                                                            From:
+                                                        </FormComponent.Label>
+                                                        <CustomeSelect
+                                                            name="companyName"
+                                                            products={suppliers}
+                                                            values={values}
+                                                            setFieldValue={
+                                                                setFieldValue
+                                                            }
+                                                            placeholder="Choose Company"
+                                                        />
+                                                    </div>
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <FormComponent.Label required>
+                                                        Date:
+                                                    </FormComponent.Label>
                                                     <CustomeInput
-                                                        id="dis"
-                                                        placeholder="dis%"
+                                                        id="date"
+                                                        value={date}
+                                                        placeholder="Date"
+                                                        name="date"
+                                                        type="date"
+                                                        required
+                                                    />
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                        </FormComponent.Row>
+                                        
+                                        <FormComponent.Row>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <FormComponent.Label required>
+                                                        Bill Number:
+                                                    </FormComponent.Label>
+                                                    <CustomeInput
+                                                        placeholder="Bill Number"
+                                                        id="billNumber"
+                                                        name="billNumber"
+                                                    />
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                        </FormComponent.Row>
+                                        
+                                        <div className="divider"></div>
+                                        
+                                        <FormComponent.Row>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <FormComponent.Label required>
+                                                        Product Name:
+                                                    </FormComponent.Label>
+                                                    <ProrductSelectOptions
+                                                        name="product"
+                                                        placeholder="Search Product..."
+                                                        options1={products}
+                                                        values={values}
+                                                        setFieldValue={
+                                                            setFieldValue
+                                                        }
+                                                    />
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <FormComponent.Label required>
+                                                        Quantity:
+                                                    </FormComponent.Label>
+                                                    <CustomeInput
+                                                        id="quantity"
+                                                        placeholder="Quantity"
+                                                        name="quantity"
+                                                        type="number"
+                                                        required
+                                                        onKeyDown={(e) =>
+                                                            handleKeyDown(e, submitForm)
+                                                        }
+                                                    />
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <FormComponent.Label required>
+                                                        Batch No:
+                                                    </FormComponent.Label>
+                                                    <CustomeInput
+                                                        id="batch"
+                                                        name="batch"
+                                                        placeholder="Batch"
+                                                        required
+                                                        onKeyDown={(e) =>
+                                                            handleKeyDown(e, submitForm)
+                                                        }
+                                                    />
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                        </FormComponent.Row>
+                                        
+                                        <FormComponent.Row>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <FormComponent.Label>
+                                                        Discount (%):
+                                                    </FormComponent.Label>
+                                                    <CustomeInput
+                                                        id="discount"
+                                                        placeholder="Discount %"
                                                         name="discount"
                                                         type="number"
-                                                        width="w-20 h-6"
                                                         onKeyDown={(e) =>
-                                                            handleKeyDown(
-                                                                e,
-                                                                submitForm
-                                                            )
+                                                            handleKeyDown(e, submitForm)
                                                         }
                                                     />
-                                                </div>
-                                                <div>
-                                                    <InputLabel
-                                                        value="Expire Date"
-                                                        className="font-bold text-xs mb-1"
-                                                    />
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <FormComponent.Label required>
+                                                        Expire Date:
+                                                    </FormComponent.Label>
                                                     <CustomeInput
-                                                        width="w-32 h-6 text-xs"
-                                                        placeholder=""
-                                                        onKeyDown={(e) =>
-                                                            handleKeyDown(
-                                                                e,
-                                                                submitForm
-                                                            )
-                                                        }
+                                                        placeholder="Expire Date"
                                                         name="expireDate"
                                                         type="month"
                                                         required
+                                                        onKeyDown={(e) =>
+                                                            handleKeyDown(e, submitForm)
+                                                        }
                                                     />
-                                                </div>
-                                            </div>
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                        </FormComponent.Row>
+                                        
+                                        <FormComponent.Row>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <FormComponent.Label required>
+                                                        Unit Price:
+                                                    </FormComponent.Label>
+                                                    <CustomeInput
+                                                        id="unitPrice"
+                                                        placeholder="Unit Price"
+                                                        name="unitPrice"
+                                                        type="number"
+                                                        required
+                                                        onKeyDown={(e) =>
+                                                            handleKeyDown(e, submitForm)
+                                                        }
+                                                    />
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                            <FormComponent.Col>
+                                                <FormComponent.Group>
+                                                    <FormComponent.Label required>
+                                                        Sell Price:
+                                                    </FormComponent.Label>
+                                                    <CustomeInput
+                                                        id="sellPrice"
+                                                        placeholder="Sell Price"
+                                                        name="sellPrice"
+                                                        type="number"
+                                                        required
+                                                        onKeyDown={(e) =>
+                                                            handleKeyDown(e, submitForm)
+                                                        }
+                                                    />
+                                                </FormComponent.Group>
+                                            </FormComponent.Col>
+                                        </FormComponent.Row>
+                                        
+                                        <div className="flex justify-end mt-6">
+                                            <button
+                                                type="submit"
+                                                className="btn btn-primary"
+                                            >
+                                                Add Product
+                                            </button>
                                         </div>
-                                        <div className="flex sm:mt-8 mt-0 lg:mt-0 md:mt-0">
-                                            <div>
-                                                <InputLabel
-                                                    value="Unit Price"
-                                                    className="font-bold text-xs mb-1"
-                                                />
-                                                <CustomeInput
-                                                    id="unitPrice"
-                                                    width="w-24 h-6"
-                                                    placeholder="Unit"
-                                                    onKeyDown={(e) =>
-                                                        handleKeyDown(
-                                                            e,
-                                                            submitForm
-                                                        )
-                                                    }
-                                                    name="unitPrice"
-                                                    type="number"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <InputLabel
-                                                    value="Sell Price"
-                                                    className="font-bold text-xs mb-1"
-                                                />
-                                                <CustomeInput
-                                                    id="sellPrice"
-                                                    width="w-24 h-6"
-                                                    placeholder="Sell"
-                                                    name="sellPrice"
-                                                    onKeyDown={(e) =>
-                                                        handleKeyDown(
-                                                            e,
-                                                            submitForm
-                                                        )
-                                                    }
-                                                    type="number"
-                                                    required
-                                                />
-                                            </div>
-                                        </div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                </Form>
-                            )}
-                        </Formik>
-                    </div>
+                                    </Form>
+                                )}
+                            </Formik>
+                        </Card.Body>
+                    </Card>
                 </div>
-                <div className="">
+                <div className="mt-6">
                     <ProductList1
                         removeProduct={removeProductHandler}
                         products={productList}
