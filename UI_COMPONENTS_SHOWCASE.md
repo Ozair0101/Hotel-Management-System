@@ -80,6 +80,18 @@ This document showcases the comprehensive UI components that have been enhanced 
 - **Column Sizing**: Flexible column widths (full, 1/2, 1/3)
 - **Alignment**: Proper alignment of all form elements
 
+### Checkbox and Radio Buttons
+- **Modern Styling**: Consistent with other form elements
+- **Proper Spacing**: Well-aligned with labels
+- **Focus States**: Clear focus indicators
+- **Accessibility**: Proper labeling and keyboard navigation
+
+### Select Components
+- **Enhanced Dropdowns**: Improved styling for react-select components
+- **Better Option Styling**: Hover effects and padding
+- **Focus States**: Clear visual feedback
+- **Responsive Design**: Adapts to different screen sizes
+
 ## 4. Buttons
 
 ### Variants
@@ -225,8 +237,13 @@ This document showcases the comprehensive UI components that have been enhanced 
 - `resources/js/Components/TextInput.jsx` - Improved input styling
 - `resources/js/Components/InputLabel.jsx` - Enhanced label styling
 - `resources/js/Components/InputError.jsx` - Better error messaging
+- `resources/js/Components/Checkbox.jsx` - Enhanced checkbox styling
+- `resources/js/Components/CustomeSel.jsx` - Improved select component styling
+- `resources/js/Components/Option.jsx` - Enhanced option styling
+- `resources/js/Components/CustomeInput.jsx` - Improved custom input styling
 
 ### Files Added
+- `resources/js/Components/Radio.jsx` - New radio button component
 - `resources/js/Pages/UI_Showcase.jsx` - Demonstration page
 
 ### Key Improvements
@@ -237,6 +254,9 @@ This document showcases the comprehensive UI components that have been enhanced 
 5. Responsive design for all screen sizes
 6. Better organization of form elements
 7. Enhanced visual feedback for user interactions
+8. Added missing radio button component
+9. Improved form validation styling
+10. Enhanced select component styling
 
 ## 11. Usage Guidelines
 
@@ -254,6 +274,7 @@ This document showcases the comprehensive UI components that have been enhanced 
 - Use proper input and label components
 - Apply validation states with error components
 - Use responsive grid classes for layout
+- Implement checkbox and radio components with proper labeling
 
 ### Buttons
 - Use the Button component with appropriate variants
