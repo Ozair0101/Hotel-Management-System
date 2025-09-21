@@ -36,7 +36,7 @@ const TableBody = ({ children, className = '' }) => {
 
 const TableRow = ({ children, className = '', hover = true }) => {
     return (
-        <tr className={`${hover ? 'hover:bg-primary-50' : ''} even:bg-gray-50 transition-colors ${className}`}>
+        <tr className={`${hover ? 'hover:bg-primary-50' : ''} even:bg-gray-50 transition-all duration-200 ${className}`}>
             {children}
         </tr>
     );
