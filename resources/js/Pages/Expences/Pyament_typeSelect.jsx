@@ -9,9 +9,17 @@ const customStyles = {
         height: "32px",
         display: "flex",
         alignItems: "center",
-        border: "none",
+        border: "1px solid #e5e7eb",
         backgroundColor: "#fff",
-        border: "1 solid #e5e7eb",
+        borderRadius: "0.5rem",
+        boxShadow: "none",
+        "&:hover": {
+            borderColor: "#d1d5db"
+        },
+        "&:focus": {
+            borderColor: "#6366f1",
+            boxShadow: "0 0 0 3px rgba(99, 102, 241, 0.1)"
+        }
     }),
     valueContainer: (provided) => ({
         ...provided,
@@ -31,6 +39,7 @@ const customStyles = {
         padding: "0px",
         display: "flex",
         alignItems: "center",
+        color: "#9ca3af"
     }),
     singleValue: (provided) => ({
         ...provided,
@@ -46,10 +55,18 @@ const customStyles = {
     dropdownIndicator: (provided) => ({
         ...provided,
         padding: "4px",
+        color: "#9ca3af",
+        "&:hover": {
+            color: "#6366f1"
+        }
     }),
     clearIndicator: (provided) => ({
         ...provided,
         padding: "4px",
+        color: "#9ca3af",
+        "&:hover": {
+            color: "#ef4444"
+        }
     }),
 };
 
