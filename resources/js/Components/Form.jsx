@@ -24,9 +24,16 @@ const FormRow = ({ children, className = '' }) => {
     );
 };
 
-const FormCol = ({ children, className = '', width = 'w-full md:w-1/2' }) => {
+const FormCol = ({ children, className = '', size = 'full' }) => {
+    const sizeClasses = {
+        full: 'w-full',
+        half: 'w-full md:w-1/2',
+        third: 'w-full md:w-1/2 lg:w-1/3',
+        quarter: 'w-full md:w-1/2 lg:w-1/4'
+    };
+    
     return (
-        <div className={`form-col ${width} ${className}`}>
+        <div className={`px-3 mb-6 ${sizeClasses[size]} ${className}`}>
             {children}
         </div>
     );
