@@ -4,6 +4,8 @@ import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import Cart from "../CartSucces/Cart";
+import Button from "@/Components/Button";
+import Form from "@/Components/Form";
 
 export const AddPurchaseToDB = ({ products, setProduct }) => {
     const { data, setData, post, errors, processing } = useForm({
@@ -68,7 +70,7 @@ export const AddPurchaseToDB = ({ products, setProduct }) => {
         e.preventDefault();
         post(route("products.store"), {
             onSuccess: () => {
-                setMessage("Product Successfully Sale it!");
+                setMessage("Product Successfully Saved!");
                 playSound();
                 setTimeout(() => setMessage(""), 2000);
                 setTotalPrice(0);
@@ -78,62 +80,48 @@ export const AddPurchaseToDB = ({ products, setProduct }) => {
             },
         });
     };
+    
     return (
-        <div>
-            <div className="overflow-hidden py-12 max-w-7xl mx-auto bg-white/80  shadow-sm px-4">
-                <div className="space-x-10">
-                    <span className="font-bold">Product Value: </span>
-                    <span className="font-bold bg-blue-500 text-white px-4 py-1 rounded-lg">
-                        {totalPrice}
-                    </span>
+        <div className="w-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                <div className="stat-card">
+                    <div className="stat-title">Product Value</div>
+                    <div className="stat-value text-primary-600">₹{totalPrice}</div>
                 </div>
-                <div className="grid grid-cols-2  md:grid-cols-2 mt-4 sm:grid-cols-1 items-center w-full pr-20">
-                    <form onSubmit={submit} className="">
-                        <div className="flex items-center gap-8">
-                            <InputLabel
-                                htmlFor="cashDis"
-                                className="font-bold text-lg"
-                                value="Cash Discount:"
-                            />
-                            <TextInput
-                                onKeyDown={handleKeyDown}
-                                id="cashDis"
-                                className="w-full h-7"
-                                name="cashDis"
-                                onChange={handleChange}
-                                value={discountCash}
-                                type="number"
-                            />
-                        </div>
-                    </form>
-                    <div className="flex justify-between sm:mt-6 mt-0 lg:mt-0 md:mt-0">
-                        <div className="space-x-4 bg-green-500 px-4 py-1 rounded-lg">
-                            <span className="font-bold text-white">
-                                Total:{" "}
-                            </span>
-                            <span className="font-bold text-white">
-                                {finalPrice}
-                            </span>
-                        </div>
-                        <div className="space-x-4 bg-green-600 px-4 py-1 rounded-lg">
-                            <span className="font-bold text-white">
-                                Payable:{" "}
-                            </span>
-                            <span className="font-bold text-white">
-                                {finalPrice}
-                            </span>
-                        </div>
-                    </div>
+                
+                <Form onSubmit={submit} className="space-y-4">
+                    <Form.Group>
+                        <Form.Label>Cash Discount:</Form.Label>
+                        <TextInput
+                            onKeyDown={handleKeyDown}
+                            id="cashDis"
+                            name="cashDis"
+                            onChange={handleChange}
+                            value={discountCash}
+                            type="number"
+                            className="input input-md"
+                            placeholder="Enter discount"
+                        />
+                    </Form.Group>
+                </Form>
+                
+                <div className="stat-card">
+                    <div className="stat-title">Total Amount</div>
+                    <div className="stat-value text-success-600">₹{finalPrice}</div>
                 </div>
-                <form onSubmit={sumbitProductToDb} className="w-32">
-                    <PrimaryButton
-                        disabled={products.length <= 0 ? true : processing}
-                        className="mt-10 px-12 py-1 mx-32 bg-blue-500 w-full ml-0"
-                    >
-                        Save
-                    </PrimaryButton>
-                </form>
             </div>
+            
+            <div className="flex justify-end mt-6">
+                <Button
+                    type="submit"
+                    disabled={products.length <= 0 ? true : processing}
+                    onClick={sumbitProductToDb}
+                    variant="primary"
+                >
+                    Save Products
+                </Button>
+            </div>
+            
             {message && <Cart message={message} />}
         </div>
     );
