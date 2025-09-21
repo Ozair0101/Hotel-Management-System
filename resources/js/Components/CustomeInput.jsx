@@ -5,22 +5,26 @@ const CustomeInput = ({
     width = "",
     value = "",
     type = "text",
+    className = "",
     ...props
 }) => {
     const [field, meta, helpers] = useField(props);
 
     return (
-        <div>
+        <div className="w-full">
             <input
                 defaultValue={value}
                 placeholder={placeholder}
                 {...field}
                 type={type}
                 {...props}
-                className={` ${width} py-1 rounded-[4px] border-gray-300 shadow-sm ${
-                    meta.touched && meta.error && "border-red-300"
+                className={`input input-md ${width} ${className} ${
+                    meta.touched && meta.error ? "input-error" : ""
                 }`}
             />
+            {meta.touched && meta.error ? (
+                <div className="error-text">{meta.error}</div>
+            ) : null}
         </div>
     );
 };
