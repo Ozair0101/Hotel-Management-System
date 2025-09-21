@@ -28,54 +28,54 @@
   .container-responsive {@apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;}
 
   /* Cards */
-  .card {@apply bg-white rounded-xl shadow-card border border-gray-100 overflow-hidden;}
-  .card-header {@apply px-6 py-4 border-b border-gray-100 bg-gray-50;}
+  .card {@apply bg-white rounded-2xl shadow-card border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-lg;}
+  .card-header {@apply px-6 py-4 border-b border-gray-100 bg-gray-50 rounded-t-2xl;}
   .card-title {@apply text-lg font-semibold text-gray-900;}
   .card-body {@apply p-6;}
-  .card-footer {@apply px-6 py-4 bg-gray-50 border-t border-gray-100;}
+  .card-footer {@apply px-6 py-4 bg-gray-50 border-t border-gray-100 rounded-b-2xl;}
 
   /* Buttons */
-  .btn {@apply inline-flex items-center justify-center rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;}
+  .btn {@apply inline-flex items-center justify-center rounded-xl font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;}
   .btn-sm {@apply px-3 py-1.5 text-xs}
   .btn-md {@apply px-4 py-2 text-sm}
   .btn-lg {@apply px-6 py-3 text-base}
   
-  .btn-primary {@apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-sm hover:shadow-md;}
-  .btn-secondary {@apply btn bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500 shadow-sm hover:shadow-md;}
-  .btn-accent {@apply btn bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500 shadow-sm hover:shadow-md;}
-  .btn-success {@apply btn bg-success-500 text-white hover:bg-success-600 focus:ring-success-500 shadow-sm hover:shadow-md;}
-  .btn-warning {@apply btn bg-warning-500 text-white hover:bg-warning-600 focus:ring-warning-500 shadow-sm hover:shadow-md;}
-  .btn-danger {@apply btn bg-danger-500 text-white hover:bg-danger-600 focus:ring-danger-500 shadow-sm hover:shadow-md;}
-  .btn-outline {@apply btn border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-primary-500 hover:border-gray-400;}
-  .btn-ghost {@apply btn text-gray-700 hover:bg-gray-100 focus:ring-primary-500;}
+  .btn-primary {@apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-sm hover:shadow-md transform hover:-translate-y-0.5;}
+  .btn-secondary {@apply btn bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500 shadow-sm hover:shadow-md transform hover:-translate-y-0.5;}
+  .btn-accent {@apply btn bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500 shadow-sm hover:shadow-md transform hover:-translate-y-0.5;}
+  .btn-success {@apply btn bg-success-500 text-white hover:bg-success-600 focus:ring-success-500 shadow-sm hover:shadow-md transform hover:-translate-y-0.5;}
+  .btn-warning {@apply btn bg-warning-500 text-white hover:bg-warning-600 focus:ring-warning-500 shadow-sm hover:shadow-md transform hover:-translate-y-0.5;}
+  .btn-danger {@apply btn bg-danger-500 text-white hover:bg-danger-600 focus:ring-danger-500 shadow-sm hover:shadow-md transform hover:-translate-y-0.5;}
+  .btn-outline {@apply btn border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-primary-500 hover:border-gray-400 transform hover:-translate-y-0.5;}
+  .btn-ghost {@apply btn text-gray-700 hover:bg-gray-100 focus:ring-primary-500 transform hover:-translate-y-0.5;}
 
   /* Inputs */
-  .input {@apply block w-full rounded-lg border border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 placeholder:text-gray-400 transition-colors;}
-  .input:focus {@apply ring-2 ring-primary-500 ring-opacity-20 border-primary-500;}
+  .input {@apply block w-full rounded-xl border border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 placeholder:text-gray-400 transition-all;}
+  .input:focus {@apply ring-4 ring-primary-500 ring-opacity-20 border-primary-500;}
   .input-error {@apply border-danger-300 focus:ring-danger-500 focus:border-danger-500;}
   .input-success {@apply border-success-300 focus:ring-success-500 focus:border-success-500;}
   
   .input-sm {@apply px-3 py-1.5 text-sm}
-  .input-md {@apply px-4 py-2 text-base}
+  .input-md {@apply px-4 py-2.5 text-base}
   .input-lg {@apply px-5 py-3 text-base}
   
-  .label {@apply block text-sm font-medium text-gray-700 mb-1;}
+  .label {@apply block text-sm font-medium text-gray-700 mb-1.5;}
   .label-required::after {@apply content-['*'] text-danger-500 ml-1;}
   .error-text {@apply mt-1 text-sm text-danger-600;}
   .help-text {@apply mt-1 text-sm text-gray-500;}
 
   /* Forms */
-  .form-group {@apply mb-5;}
+  .form-group {@apply mb-6;}
   .form-row {@apply flex flex-wrap -mx-3;}
-  .form-col {@apply px-3 mb-5 w-full md:w-1/2 lg:w-1/3;}
+  .form-col {@apply px-3 mb-6 w-full md:w-1/2 lg:w-1/3;}
 
   /* Tables */
-  .table-wrapper {@apply overflow-x-auto rounded-xl shadow-card border border-gray-100;}
+  .table-wrapper {@apply overflow-x-auto rounded-2xl shadow-card border border-gray-100;}
   .table {@apply min-w-full text-left text-sm text-gray-700;}
   .table thead {@apply bg-gray-50 text-gray-600 uppercase text-xs font-semibold;}
   .table thead th {@apply px-6 py-4 font-semibold tracking-wider text-left;}
   .table tbody {@apply divide-y divide-gray-200;}
-  .table tbody tr {@apply bg-white even:bg-gray-50 hover:bg-primary-50 transition-colors;}
+  .table tbody tr {@apply bg-white even:bg-gray-50 hover:bg-primary-50 transition-all duration-200;}
   .table tbody td {@apply px-6 py-4 align-middle whitespace-nowrap;}
   .table tfoot {@apply bg-gray-50 font-semibold;}
   .table tfoot td {@apply px-6 py-4 align-middle;}
@@ -90,22 +90,29 @@
   .badge-muted {@apply badge bg-gray-100 text-gray-800;}
 
   /* Alerts */
-  .alert {@apply rounded-lg p-4 mb-4;}
-  .alert-primary {@apply alert bg-primary-50 text-primary-800 border border-primary-200;}
-  .alert-secondary {@apply alert bg-secondary-50 text-secondary-800 border border-secondary-200;}
-  .alert-success {@apply alert bg-success-50 text-success-800 border border-success-200;}
-  .alert-warning {@apply alert bg-warning-50 text-warning-800 border border-warning-200;}
-  .alert-danger {@apply alert bg-danger-50 text-danger-800 border border-danger-200;}
+  .alert {@apply rounded-xl p-4 mb-4 border-l-4;}
+  .alert-primary {@apply alert bg-primary-50 text-primary-800 border-primary-500;}
+  .alert-secondary {@apply alert bg-secondary-50 text-secondary-800 border-secondary-500;}
+  .alert-success {@apply alert bg-success-50 text-success-800 border-success-500;}
+  .alert-warning {@apply alert bg-warning-50 text-warning-800 border-warning-500;}
+  .alert-danger {@apply alert bg-danger-50 text-danger-800 border-danger-500;}
 
   /* Navigation */
   .nav-link {@apply flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200;}
   .nav-link-active {@apply bg-primary-50 text-primary-700;}
   .nav-link-inactive {@apply text-gray-700 hover:bg-gray-100 hover:text-gray-900;}
   .nav-link-icon {@apply h-5 w-5 flex-shrink-0;}
+  
+  /* Modern Navigation */
+  .nav-link-modern {@apply flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300;}
+  .nav-link-active-modern {@apply bg-white text-primary-700 shadow-sm;}
+  .nav-link-inactive-modern {@apply text-primary-100 hover:bg-primary-600 hover:text-white;}
+  .nav-link-icon-modern {@apply h-5 w-5 flex-shrink-0;}
 
   /* Dropdowns */
   .dropdown-menu {@apply absolute z-50 mt-2 rounded-xl shadow-lg border border-gray-100 bg-white py-2 w-48 right-0 origin-top-right focus:outline-none;}
-  .dropdown-item {@apply block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors;}
+  .dropdown-item {@apply block w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-all duration-200;}
+  .dropdown-item-modern {@apply block w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-all duration-200 rounded-lg mx-2;}
 
   /* Utility classes */
   .section-header {@apply mb-6 pb-2 border-b border-gray-200;}
@@ -114,7 +121,7 @@
   
   .divider {@apply border-t border-gray-200 my-6;}
   
-  .stat-card {@apply rounded-xl bg-white p-6 shadow-card border border-gray-100;}
+  .stat-card {@apply rounded-2xl bg-white p-6 shadow-card border border-gray-100 transition-all duration-300 hover:shadow-lg;}
   .stat-title {@apply text-sm font-medium text-gray-500 truncate;}
   .stat-value {@apply mt-1 text-3xl font-semibold text-gray-900;}
   .stat-desc {@apply mt-1 text-sm text-gray-500;}
