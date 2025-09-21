@@ -6,6 +6,7 @@ const Button = ({
     variant = 'primary', 
     size = 'md', 
     type = 'button',
+    icon = null,
     ...props 
 }) => {
     const baseClasses = 'btn';
@@ -31,6 +32,7 @@ const Button = ({
             className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
             {...props}
         >
+            {icon && <span className="mr-2">{icon}</span>}
             {children}
         </button>
     );
