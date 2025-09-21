@@ -2,6 +2,9 @@ import { Link, usePage } from "@inertiajs/react";
 import { AddPurchaseToDB } from "./AddPurchaseToDB";
 import { useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
+import Table from "@/Components/Table";
+import Card from "@/Components/Card";
+import Button from "@/Components/Button";
 
 export const ProductList1 = (props) => {
     const { errors } = usePage().props;
@@ -42,152 +45,72 @@ export const ProductList1 = (props) => {
         delete errors[`products.${index}.totalPrice`];
         delete errors[`products.${index}.discount`];
     };
+    
     return (
         <>
-            <div className="relative flex flex-col max-w-7xl mx-auto h-full overflow-x-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-                <table className="w-full text-left table-auto min-w-max text-slate-800">
-                    <thead>
-                        <tr className="text-white border-b border-slate-300 bg-blue-500">
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    Product Name
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    Company Name
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    Bill Number
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    quantity
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    Unit Price
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    Sell Price
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    Batch
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    Expriy
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    Discount
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    total Price
-                                </p>
-                            </th>
-                            <th className="p-4">
-                                <p className="text-sm leading-none font-normal">
-                                    Action
-                                </p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {props.products.map((item, index) => {
-                            return (
-                                <tr
-                                    className={` ${
-                                        hasErrors(index)
-                                            ? "bg-red-200"
-                                            : "hover:bg-slate-100"
-                                    }`}
-                                    key={item.id}
-                                    id={`product-${index}`}
-                                >
-                                    <td className="p-4">
-                                        <p className="text-sm font-bold">
-                                            {item.product}
-                                        </p>
-                                    </td>
-                                    <td className="p-4">
-                                        <p className="text-sm">
-                                            {item.company}
-                                        </p>
-                                    </td>
-                                    <td className="p-4">
-                                        <p className="text-sm">
-                                            {item.bill_number}
-                                        </p>
-                                    </td>
-                                    <td className="p-4">
-                                        <p className="text-sm">
-                                            {item.quantity}
-                                        </p>
-                                    </td>
-                                    <td className="p-4">
-                                        <p className="text-sm">
-                                            {item.unitPrice}
-                                        </p>
-                                    </td>
-                                    <td className="p-4">
-                                        <p className="text-sm">
-                                            {item.sellPrice}
-                                        </p>
-                                    </td>
-                                    <td className="p-4">
-                                        <p className="text-sm">{item.batch}</p>
-                                    </td>
-                                    <td className="p-4">
-                                        <p className="text-sm">
-                                            {item.expireDate}
-                                        </p>
-                                    </td>
-                                    <td className="p-4">
-                                        <p className="text-sm">
-                                            {item.discount}
-                                        </p>
-                                    </td>
-                                    <td className="p-4">
-                                        <p className="text-sm">
-                                            {item.totalPrice}
-                                        </p>
-                                    </td>
-
-                                    <td className="p-4">
-                                        <a
-                                            onClick={() => {
-                                                clearErrorsHandler(index);
-                                                props.removeProduct(item.id);
-                                            }}
-                                            className="text-sm text-red-500 cursor-pointer font-semibold hover:underline hover:text-blue-500 "
-                                        >
-                                            <FaTrash />
-                                        </a>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
-            <AddPurchaseToDB
-                products={props.products}
-                setProduct={props.setProduct}
-            />
-            <h1></h1>
+            <Card>
+                <Card.Header>
+                    <Card.Title>Product List</Card.Title>
+                </Card.Header>
+                <Card.Body className="p-0">
+                    <Table>
+                        <Table.Head>
+                            <Table.Row>
+                                <Table.HeadCell>Product Name</Table.HeadCell>
+                                <Table.HeadCell>Company Name</Table.HeadCell>
+                                <Table.HeadCell>Bill Number</Table.HeadCell>
+                                <Table.HeadCell>Quantity</Table.HeadCell>
+                                <Table.HeadCell>Unit Price</Table.HeadCell>
+                                <Table.HeadCell>Sell Price</Table.HeadCell>
+                                <Table.HeadCell>Batch</Table.HeadCell>
+                                <Table.HeadCell>Expiry</Table.HeadCell>
+                                <Table.HeadCell>Discount</Table.HeadCell>
+                                <Table.HeadCell>Total Price</Table.HeadCell>
+                                <Table.HeadCell>Action</Table.HeadCell>
+                            </Table.Row>
+                        </Table.Head>
+                        <Table.Body>
+                            {props.products.map((item, index) => {
+                                return (
+                                    <Table.Row 
+                                        key={item.id} 
+                                        id={`product-${index}`}
+                                        className={hasErrors(index) ? 'bg-danger-100' : ''}
+                                    >
+                                        <Table.Cell>{item.product}</Table.Cell>
+                                        <Table.Cell>{item.company}</Table.Cell>
+                                        <Table.Cell>{item.bill_number}</Table.Cell>
+                                        <Table.Cell>{item.quantity}</Table.Cell>
+                                        <Table.Cell>{item.unitPrice}</Table.Cell>
+                                        <Table.Cell>{item.sellPrice}</Table.Cell>
+                                        <Table.Cell>{item.batch}</Table.Cell>
+                                        <Table.Cell>{item.expireDate}</Table.Cell>
+                                        <Table.Cell>{item.discount}%</Table.Cell>
+                                        <Table.Cell>{item.totalPrice}</Table.Cell>
+                                        <Table.Cell>
+                                            <button
+                                                onClick={() => {
+                                                    clearErrorsHandler(index);
+                                                    props.removeProduct(item.id);
+                                                }}
+                                                className="text-danger-500 hover:text-danger-700"
+                                            >
+                                                <FaTrash />
+                                            </button>
+                                        </Table.Cell>
+                                    </Table.Row>
+                                );
+                            })}
+                        </Table.Body>
+                    </Table>
+                </Card.Body>
+                <Card.Footer className="flex justify-end">
+                    <AddPurchaseToDB
+                        products={props.products}
+                        setProduct={props.setProduct}
+                    />
+                </Card.Footer>
+            </Card>
         </>
     );
 };
