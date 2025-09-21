@@ -1,0 +1,200 @@
+import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/InputLabel";
+import PrimaryButton from "@/Components/PrimaryButton";
+import TextInput from "@/Components/TextInput";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
+import { useState } from "react";
+import { date } from "yup";
+import Cart from "../CartSucces/Cart";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { MenuSchema } from "@/schema/MenuSchema";
+// import { Form } from "formik";
+
+const supMenu = [{ name: "", label: "" }];
+
+export default function AddMenu() {
+    const [message, setMessage] = useState("");
+
+    const { data, setData, post, processing, errors, reset } = useForm({
+        name: "",
+        category: "",
+        madeFrom: "",
+    });
+
+    const playSound = () => {
+        const audio = new Audio("/success.wav");
+        audio.play();
+    };
+    const submit = (values, action) => {
+        router.post(route("menu.store"), values, {
+            onSuccess: () => {
+                setMessage("Product Successfully addedd!");
+                playSound();
+                setTimeout(() => setMessage(""), 2000);
+            },
+            onFinish: () => action.resetForm(),
+        });
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            const form = event.target.form;
+            const index = Array.prototype.indexOf.call(form, event.target);
+            const nextInput = form.elements[index + 1];
+            if (nextInput) {
+                nextInput.focus();
+            }
+        }
+    };
+
+    const inputCount = 50; // Number of input fields
+    const inputsPerRow = 5; // Number of inputs per row
+    return (
+        <AuthenticatedLayout
+            header={
+                <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                    Add Menu
+                </h2>
+            }
+        >
+            <Head title="AddMenu" />
+
+            <div className="py-4 text-right">
+                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="overflow-hidden bg-white/80 shadow-sm sm:rounded-lg">
+                        <Formik
+                            onSubmit={submit}
+                            // validationSchema={MenuSchema}
+                            initialValues={{
+                                price: "",
+                                menu: "",
+                                ...Array.from({
+                                    length: inputCount,
+                                }).reduce((acc, _, i) => {
+                                    acc[`input${i + 1}`] = "";
+                                    return acc;
+                                }, {}),
+                            }}
+                        >
+                            <Form className="mt-4 space-y-3" dir="rtl">
+                                <div className="w-64 p-2 text-right">
+                                    <InputLabel
+                                        htmlFor="menu"
+                                        value="شماره Menu"
+                                    />
+                                    <Field
+                                        type="number"
+                                        id="menu"
+                                        placeholder="شماره مینو"
+                                        name="menu"
+                                        onKeyDown={handleKeyDown}
+                                        className="border text-sm w-full h-6 p-2 border-gray-300 shadow-sm  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        required
+                                    />
+                                    <ErrorMessage
+                                        name="menu"
+                                        className="text-red-500"
+                                        component="p"
+                                    />
+                                </div>
+                                <div className="w-64 pb-4 px-2">
+                                    <InputLabel htmlFor="price" value="مقدار" />
+
+                                    <Field
+                                        id="price"
+                                        name="price"
+                                        type="number"
+                                        placeholder="Price"
+                                        onKeyDown={handleKeyDown}
+                                        className="border text-sm h-6  w-full  p-2 border-gray-300 shadow-sm  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        autoComplete="price"
+                                        required
+                                    />
+                                    <ErrorMessage
+                                        name="price"
+                                        className="text-red-500"
+                                        component="p"
+                                    />
+                                    {/* {error} */}
+                                </div>
+
+                                {/* ************Loop********************************* */}
+                                <div className="flex flex-col gap-2">
+                                    {Array.from({
+                                        length: inputCount / inputsPerRow,
+                                    }).map((_, rowIndex) => (
+                                        <div
+                                            key={rowIndex}
+                                            className={`grid grid-cols-5 gap-4 p-2 ${
+                                                rowIndex % 2 === 0
+                                                    ? "bg-white"
+                                                    : "bg-gray-200"
+                                            }`}
+                                        >
+                                            {Array.from({
+                                                length: inputsPerRow,
+                                            }).map((_, colIndex) => {
+                                                const fieldIndex =
+                                                    rowIndex * inputsPerRow +
+                                                    colIndex;
+                                                if (fieldIndex >= inputCount)
+                                                    return null;
+                                                const fieldName = `input${
+                                                    fieldIndex + 1
+                                                }`;
+
+                                                return (
+                                                    <div
+                                                        key={fieldIndex}
+                                                        className="flex flex-col"
+                                                    >
+                                                        <label
+                                                            htmlFor={fieldName}
+                                                            className="text-sm font-medium text-gray-700"
+                                                        >
+                                                            {`Service ${
+                                                                fieldIndex + 1
+                                                            }`}
+                                                        </label>
+                                                        <Field
+                                                            id={fieldName}
+                                                            name={fieldName}
+                                                            onKeyDown={
+                                                                handleKeyDown
+                                                            }
+                                                            type="text"
+                                                            className="border text-sm h-6 p-2 border-gray-300 shadow-sm  focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                            placeholder={`Enter Services`}
+                                                        />
+                                                        <ErrorMessage
+                                                            name={fieldName}
+                                                            className="text-red-500"
+                                                            component="p"
+                                                        />
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    ))}
+                                </div>
+                                {/* **************************************** */}
+                                <div className="py-6">
+                                    <PrimaryButton
+                                        type="submit"
+                                        className="ms-4 w-52"
+                                        disabled={processing}
+                                    >
+                                        Add
+                                    </PrimaryButton>
+                                </div>
+                            </Form>
+                        </Formik>
+                    </div>
+                </div>
+            </div>
+            {message && <Cart message={message} />}
+        </AuthenticatedLayout>
+    );
+}
