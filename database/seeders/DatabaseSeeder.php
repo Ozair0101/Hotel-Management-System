@@ -14,10 +14,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            VoyagerDatabaseSeeder::class,
         ]);
+        User::factory()->create([
+            'name' => 'dev',
+            'email' => 'dev@dev.com',
+            'password' => 'dev',
+            'role_id' => 1,
+        ]);
+       
     }
 }
