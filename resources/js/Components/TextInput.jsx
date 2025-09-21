@@ -7,8 +7,6 @@ export default forwardRef(function TextInput(
 ) {
     const localRef = useRef(null);
 
-    // const [field, meta, helpers] = useField(props);
-
     useImperativeHandle(ref, () => ({
         focus: () => localRef.current?.focus(),
     }));
@@ -23,7 +21,7 @@ export default forwardRef(function TextInput(
         <input
             {...props}
             type={type}
-            className={`input ${className}`}
+            className={`input input-md ${className}`}
             ref={localRef}
         />
     );
