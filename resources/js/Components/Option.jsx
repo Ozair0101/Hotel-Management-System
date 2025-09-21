@@ -4,15 +4,15 @@ import { components } from "react-select";
 const Option = (props) => {
     return (
         <components.Option {...props}>
-            <div className="">
-                <div className="font-bold">
+            <div className="py-2 px-3 rounded-lg hover:bg-primary-50 transition-colors duration-200">
+                <div className="font-medium text-gray-900">
                     {props.data.label}
-                    {/* {props.data.value} */}
                 </div>
-                {/* <div className="text-xs text-gray-600">
-                    {props.data.quantity &&
-                        `Quantity: ${props.data.quantity} | Price: ${props.data.price} | Batch: ${props.data.batch}`}
-                </div> */}
+                {props.data.quantity && (
+                    <div className="text-xs text-gray-500 mt-1">
+                        Quantity: {props.data.quantity} | Price: {props.data.price} | Batch: {props.data.batch}
+                    </div>
+                )}
             </div>
         </components.Option>
     );
